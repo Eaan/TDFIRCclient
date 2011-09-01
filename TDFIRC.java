@@ -31,6 +31,8 @@ public class TDFIRC extends JFrame implements ActionListener {
 			e.printStackTrace();
 		}
 		
+		
+		// Create the main window and its components		
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setLocation(5, 5);
 		setSize(300, 300);

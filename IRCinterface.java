@@ -268,6 +268,7 @@ public class IRCinterface implements MouseListener, MouseMotionListener{
 
 	@Override
 	public void mouseDragged(MouseEvent e) {
+		// Handles the dragging of the window via the dragpanel
 		int x= 0, y = 0;
 
 		x = panel.getX() + e.getX() - lastx;

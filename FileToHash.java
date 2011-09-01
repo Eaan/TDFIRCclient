@@ -28,6 +28,7 @@ public class FileToHash extends HashMap<String, String> {
 	
 	public String[] toArray()
 	{
+		// Returns an array of all the keys in this FTH
 		String[] result = new String[1];
 		result = keySet().toArray(result);
 		return result;		
