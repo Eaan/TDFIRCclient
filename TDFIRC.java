@@ -10,7 +10,6 @@ import javax.swing.UIManager;
 @SuppressWarnings("serial")
 public class TDFIRC extends JFrame implements ActionListener {
 	String username;
-	Color color = new Color(0,255,0);
 	Networking net;
 	IRCinterface gui;
 	FileToHash s;
