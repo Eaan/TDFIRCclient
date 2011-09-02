@@ -19,6 +19,8 @@ public class TDFIRC extends JFrame implements ActionListener {
 	JButton removeuserbutton;
 	JButton settingsbutton;
 	
+	SettingsWindow sw = null;
+	
 	public static final String configfile = "config.ini";
 
 	public TDFIRC()
@@ -200,7 +202,14 @@ public class TDFIRC extends JFrame implements ActionListener {
 			}
 		}  else if (e.getSource().equals(settingsbutton))
 		{
-			SettingsWindow sw = new SettingsWindow(s, this);
+			if (sw == null)
+			{
+				sw = new SettingsWindow(s, this);
+			} else
+			{
+				sw.requestFocus();
+			}
+			
 		}
 
 	}

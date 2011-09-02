@@ -17,8 +17,10 @@ import javax.swing.SwingConstants;
 public class SettingsWindow extends JFrame implements ActionListener  {
 
 	JButton save;
+	JButton close;
 	
 	FileToHash settings;
+	TDFIRC parentframe;
 	
 	Vector<JTextField> fields = new Vector<JTextField>();
 	Vector<JLabel> labels = new Vector<JLabel>();
@@ -27,9 +29,10 @@ public class SettingsWindow extends JFrame implements ActionListener  {
 	{
 		super("Settings");
 		settings = s;
+		parentframe = parent;
 		setLayout(null);
 		setResizable(false);
-		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+		setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
 		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
 
 		String[] sa = s.toArray();
@@ -55,9 +58,15 @@ public class SettingsWindow extends JFrame implements ActionListener  {
 		
 		save = new JButton("Save");
 		save.setSize(140, 50);
-		save.setLocation(150, getHeight() - 82);
+		save.setLocation(10, getHeight() - 82);
 		add(save);
 		save.addActionListener(this);
+		
+		close = new JButton("Cancel");
+		close.setSize(140, 50);
+		close.setLocation(150, getHeight() - 82);
+		add(close);
+		close.addActionListener(this);
 		
 		setLocation((dim.width-getWidth())/2, (dim.height-getHeight())/2);
 		setVisible(true);
@@ -66,10 +75,18 @@ public class SettingsWindow extends JFrame implements ActionListener  {
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-		for(int i = 0; i < fields.size(); i++)
+		if(arg0.getSource().equals(save))
 		{
-			settings.put(labels.get(i).getText(), fields.get(i).getText());
-			settings.writeToFile(settings.configfile, settings);
+			for(int i = 0; i < fields.size(); i++)
+			{
+				settings.put(labels.get(i).getText(), fields.get(i).getText());
+				settings.writeToFile(settings.configfile, settings);
+
+			}
+		} else if (arg0.getSource().equals(close))
+		{
+			parentframe.sw = null;
+			this.setVisible(false);
 		}
 		
 	}
